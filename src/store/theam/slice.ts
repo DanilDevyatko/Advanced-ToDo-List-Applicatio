@@ -1,19 +1,24 @@
 // Currently not used but will be used in the future
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface TheamState {
-  themeMode: "light" | "dark";
+enum ThemeMode {
+  LIGHT = "light",
+  DARK = "dark",
 }
 
-const initialState: TheamState = {
-  themeMode: "light",
+interface ThemState {
+  themeMode: ThemeMode;
+}
+
+const initialState: ThemState = {
+  themeMode: ThemeMode.LIGHT,
 };
 
 const theamSlice = createSlice({
   name: "theamMode",
   initialState,
   reducers: {
-    setThem: (state, action: PayloadAction<"light" | "dark">) => {
+    setThem: (state, action: PayloadAction<ThemeMode>) => {
       state.themeMode = action.payload;
     },
   },
