@@ -1,6 +1,6 @@
 import Button from "../../common/Button/Button";
 import { removeTask, toggleTask } from "../../../store/todo/slice";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../../hooks";
 
 interface TaskItemProps {
   task: {
@@ -11,7 +11,7 @@ interface TaskItemProps {
 }
 
 export function TaskItem({ task }: TaskItemProps) {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const handleToggleTask = (id: number) => {
     dispatch(toggleTask(id));
   };

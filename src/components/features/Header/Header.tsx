@@ -1,9 +1,9 @@
 import { RootState } from "./../../../store/index";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../../hooks";
 
 export function Header() {
-  const user = useSelector((state: RootState) => state.user);
+  const user = useAppSelector((state: RootState) => state.user);
 
   const [gereeting, setGreeting] = useState("Good Morning");
 
