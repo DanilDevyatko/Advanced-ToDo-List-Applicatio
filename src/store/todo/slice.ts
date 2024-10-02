@@ -12,23 +12,11 @@ interface TodoState {
 }
 
 const initialState: TodoState = {
-  tasks: [
-    {
-      id: 1,
-      title: "First Taks",
-      completed: false,
-    },
-    {
-      id: 2,
-      title: "Second Taks",
-      completed: false,
-    },
-  ],
+  tasks: [],
   filter: "all",
 };
 
 const todoSlice = createSlice({
-  //Why name is todos if all of them are actions? And what about structure of this object?
   name: "todos",
   initialState,
   reducers: {
@@ -55,12 +43,10 @@ const todoSlice = createSlice({
       state,
       action: PayloadAction<"all" | "active" | "completed">
     ) => {
-      // Looks like mutation but I know it's not. I just want to know on how it works.
       state.filter = action.payload;
     },
   },
 });
 
-// What is difference between those two lines?
 export const { addTask, toggleTask, removeTask, setFilter } = todoSlice.actions;
 export default todoSlice.reducer;

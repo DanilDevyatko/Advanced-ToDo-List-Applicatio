@@ -6,7 +6,7 @@ export function Tasklist() {
   const todos = useAppSelector((state: RootState) => state.todos);
 
   return (
-    <ul className="flex flex-col h-full m-auto bg-white p-6 rounded-t-3xl gap-y-4">
+    <ul className="flex flex-col gap-y-6">
       {todos.tasks.map((task) => (
         <TaskItem key={task.id} task={task} />
       ))}
