@@ -1,4 +1,4 @@
-import { RootState } from "../../../store/index";
+import { RootState } from "../../../store";
 import { useAppSelector } from "../../../hooks";
 import { TaskItem } from "../TaskItem/TaskItem";
 

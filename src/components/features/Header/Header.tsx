@@ -1,4 +1,4 @@
-import { RootState } from "./../../../store/index";
+import { RootState } from "./../../../store";
 import { useEffect, useState } from "react";
 import { useAppSelector } from "../../../hooks";
 

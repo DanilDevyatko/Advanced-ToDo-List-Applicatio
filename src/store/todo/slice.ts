@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface Task {
+export interface Task {
   id: number;
   title: string;
   completed: boolean;
@@ -29,6 +29,21 @@ const todoSlice = createSlice({
       state.tasks.push(newTask);
     },
 
+    addTasksLocalStorage: (state) => {
+      const storedTasks = localStorage.getItem("todos");
+      if (storedTasks) {
+        try {
+          const parsedTasks = JSON.parse(storedTasks);
+          state.tasks = Array.isArray(parsedTasks) ? parsedTasks : [];
+        } catch (e) {
+          console.error("Error parsing localStorage data:", e);
+          state.tasks = [];
+        }
+      } else {
+        state.tasks = [];
+      }
+    },
+
     toggleTask: (state, action: PayloadAction<number>) => {
       const task = state.tasks.find((task) => task.id === action.payload);
 
@@ -39,6 +54,7 @@ const todoSlice = createSlice({
     removeTask: (state, action: PayloadAction<number>) => {
       state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     },
+
     setFilter: (
       state,
       action: PayloadAction<"all" | "active" | "completed">
@@ -48,5 +64,11 @@ const todoSlice = createSlice({
   },
 });
 
-export const { addTask, toggleTask, removeTask, setFilter } = todoSlice.actions;
+export const {
+  addTask,
+  toggleTask,
+  removeTask,
+  setFilter,
+  addTasksLocalStorage,
+} = todoSlice.actions;
 export default todoSlice.reducer;
